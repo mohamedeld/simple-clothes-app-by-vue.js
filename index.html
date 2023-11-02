@@ -110,6 +110,11 @@
                 <td>{{item.quantity * item.product.price}}</td>
               </tr>
             </tbody>
+            <tfoot>
+              <tr>
+                <td>TotalPrice {{formatPrice(getTotalPrice())}}</td>
+              </tr>
+            </tfoot>
           </table>
         </div>
       </main>
@@ -129,6 +134,12 @@
         methods: {
           handleVisible() {
             this.isVisible = !this.isVisible;
+          },
+          formatPrice(value){
+            return Intl.NumberFormat("en-US",{
+              style:'currency',
+              currency:'USD'
+            }).format(value)
           },
           increaseQuantity(item){
             item.quantity++;
